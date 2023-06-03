@@ -3,28 +3,17 @@ package com.nodam.server.dto;
 import java.time.LocalDateTime;
 
 public class UserDTO {
-    private int id;
     private String userId;
     private String jsonObject;
 
     public UserDTO() {
-        id = -1;
         userId = "";
         jsonObject = "";
     }
 
-    public UserDTO(int id, String userId, String jsonObject) {
-        this.id = id;
+    public UserDTO(String userId, String jsonObject) {
         this.userId = userId;
         this.jsonObject = jsonObject;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getUserId() {
@@ -46,7 +35,6 @@ public class UserDTO {
     @Override
     public String toString() {
         return "UserDTO{" +
-                "id=" + id +
                 ", userId='" + userId + '\'' +
                 ", jsonObject='" + jsonObject + '\'' +
                 '}';
