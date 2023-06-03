@@ -4,6 +4,7 @@ import com.nodam.server.dto.RegisterDTO;
 import com.nodam.server.dto.AddressDTO;
 import com.nodam.server.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +15,10 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 
 @RestController
-@CrossOrigin(origins = "http://10.3.20.106:3000")
 @RequestMapping("/")
 public class AddressController {
     private static final Logger logger = LoggerFactory.getLogger(AddressController.class);
+
     @Autowired
     AddressService addressService;
 
@@ -30,7 +31,7 @@ public class AddressController {
         }
         catch (DuplicateKeyException e) {
             logger.error(addressDTO.getUserId() + " registered duplicate key " + addressDTO.getWalletAddress());
-            return ResponseEntity.status(HttpStatus.OK).body("Fail");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Fail");
         }
     }
 

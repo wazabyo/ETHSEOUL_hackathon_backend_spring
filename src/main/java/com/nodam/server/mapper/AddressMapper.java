@@ -11,6 +11,9 @@ public interface AddressMapper {
         @Insert("INSERT INTO `db`.`address` VALUES (null, LOWER(#{walletAddress}), #{tokenId}, #{userId})")
         public int register(@RequestBody AddressDTO addressDTO);
 
+        @Select("SELECT COUNT(walletAddress) FROM `db`.`address` WHERE userId=#{userId} && tokenId=#{tokenId};")
+        public int checkUserHasToken(@Param("userId") String userId, @Param("tokenId") String tokenId);
+
         @Select("SELECT * FROM `db`.`address` WHERE userId=#{userId};")
         public ArrayList<AddressDTO> getWalletList(@Param("userId") String userId);
 

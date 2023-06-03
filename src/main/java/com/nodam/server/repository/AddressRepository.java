@@ -15,7 +15,10 @@ public class AddressRepository {
 
     public String register(AddressDTO addressDTO) throws DuplicateKeyException{
         if (mapper.getWalletCount(addressDTO.getWalletAddress()) != 0)
-            throw new DuplicateKeyException("Fail");
+            throw new DuplicateKeyException("Fail : Existing wallet address");
+        else if (mapper.checkUserHasToken(addressDTO.getUserId(), addressDTO.getTokenId()) != 0)
+            throw new DuplicateKeyException("Fail : User already this token id");
+
         mapper.register(addressDTO);
         return "Success";
     }
