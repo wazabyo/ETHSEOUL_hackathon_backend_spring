@@ -9,7 +9,7 @@ import java.util.ArrayList;
 @Mapper
 public interface UserDTOMapper {
 
-        @Insert("INSERT INTO `db`.`user` (`id`, `userId`, `jsonObject`) VALUES (#{id}, #{userId}, #{jsonObject})")
+        @Insert("INSERT INTO `db`.`user` (`id`, `userId`, `jsonObject`) VALUES (#{id}, #{userId}, #{jsonObject}); ")
         public int insertUser(@RequestBody UserDTO user);
 
         @Select("SELECT * FROM user;")

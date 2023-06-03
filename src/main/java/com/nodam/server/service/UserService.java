@@ -3,7 +3,6 @@ package com.nodam.server.service;
 import com.nodam.server.dto.UserDTO;
 import com.nodam.server.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
