@@ -8,13 +8,13 @@ import java.util.ArrayList;
 
 @Mapper
 public interface AddressMapper {
-        @Insert("INSERT INTO `db`.`address` VALUES (null, #{walletAddress}, #{tokenId}, #{userId})")
+        @Insert("INSERT INTO `db`.`address` VALUES (null, LOWER(#{walletAddress}), #{tokenId}, #{userId})")
         public int register(@RequestBody AddressDTO addressDTO);
-
-        @Select("SELECT #{userId} FROM `db`.`address` WHERE walletAddress = #{walletAddress}")
-        public Boolean isWalletExist(@Param("walletAddress") String walletAddress);
 
         @Select("SELECT * FROM `db`.`address` WHERE userId=#{userId};")
         public ArrayList<AddressDTO> getWalletList(@Param("userId") String userId);
+
+        @Select("SELECT COUNT(walletAddress) FROM `db`.`address` WHERE walletAddress = LOWER(#{walletAddress})")
+        public int getWalletCount(@Param("walletAddress") String walletAddress);
 
 }
